@@ -1,0 +1,19 @@
+{
+    "name": "edrian/appsalon",
+    "description": "Proyecto PHP 8, MVC, SASS, Gulp, SQL",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./", 
+            "Controllers\\" : "./controllers", 
+            "Model\\" : "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "EdrianOrtega",
+            "email": "inuyasha09889@gmail.com"
+        }
+    ],
+    "require": {}
+}
