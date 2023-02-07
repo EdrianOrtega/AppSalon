@@ -28,4 +28,30 @@ class Usuario extends ActiveRecord {
         $this->confirmado = $args['confirmado'] ?? null; 
         $this->token = $args['token'] ?? ''; 
     }
+
+    // Mensajes de Validación para la creación de una cuenta
+    public function validarNuevaCuenta() {
+        if(!$this->nombre) {
+            self::$alertas['error'][] = 'El Nombre del Cliente es Obligatorio'; 
+        }
+
+        if(!$this->apellido) {
+            self::$alertas['error'][] = 'El Apellido del Cliente es Obligatorio'; 
+        }
+
+        // if(!$this->telefono) {
+        //     self::$alertas['error'][] = 'El Teléfono del Cliente es Obligatorio'; 
+        // }
+
+        // if(!$this->email) {
+        //     self::$alertas['error'][] = 'El Email es Obligatorio'; 
+        // }
+
+        // if(!$this->password) {
+        //     self::$alertas['error'] = 'El Password es Obligatorio'; 
+        // }
+
+        return self::$alertas; 
+    }
+
 }
