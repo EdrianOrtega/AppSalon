@@ -11,7 +11,7 @@ class Usuario extends ActiveRecord {
     public $nombre; 
     public $apellido; 
     public $email; 
-    public $passsword; 
+    public $password; 
     public $telefono; 
     public $admin; 
     public $confirmado; 
@@ -22,7 +22,7 @@ class Usuario extends ActiveRecord {
         $this->nombre = $args['nombre'] ?? ''; 
         $this->apellido = $args['apellido'] ?? ''; 
         $this->email = $args['email'] ?? ''; 
-        $this->passsword = $args['passsword'] ?? ''; 
+        $this->password = $args['password'] ?? ''; 
         $this->telefono = $args['telefono'] ?? ''; 
         $this->admin = $args['admin'] ?? null; 
         $this->confirmado = $args['confirmado'] ?? null; 
@@ -32,24 +32,30 @@ class Usuario extends ActiveRecord {
     // Mensajes de Validación para la creación de una cuenta
     public function validarNuevaCuenta() {
         if(!$this->nombre) {
-            self::$alertas['error'][] = 'El Nombre del Cliente es Obligatorio'; 
+            self::$alertas['error'][] = 'El Nombre es Obligatorio'; 
         }
 
         if(!$this->apellido) {
-            self::$alertas['error'][] = 'El Apellido del Cliente es Obligatorio'; 
+            self::$alertas['error'][] = 'El Apellido es Obligatorio'; 
+        }
+
+        if(!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio'; 
+        }
+
+        if(!$this->password) {
+            self::$alertas['error'][] = 'El Password es Obligatorio'; 
+        } 
+
+        if(strlen($this->password) < 6) {
+            self::$alertas['error'][] = 'El Password debe Contener al menos 6 Caracteres'; 
         }
 
         // if(!$this->telefono) {
-        //     self::$alertas['error'][] = 'El Teléfono del Cliente es Obligatorio'; 
+        //     self::$alertas['error'][] = 'El Teléfono es Obligatorio'; 
         // }
 
-        // if(!$this->email) {
-        //     self::$alertas['error'][] = 'El Email es Obligatorio'; 
-        // }
-
-        // if(!$this->password) {
-        //     self::$alertas['error'] = 'El Password es Obligatorio'; 
-        // }
+        
 
         return self::$alertas; 
     }
