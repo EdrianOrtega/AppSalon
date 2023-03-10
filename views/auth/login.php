@@ -1,6 +1,10 @@
 <h1 class="nombre-pagina"> Login </h1> 
 <p class="descripcion-pagina"> Iniciar sesión con tus datos </p> 
 
+<?php 
+    include_once __DIR__ . "/../templates/alertas.php"; 
+?>
+
 <form class="formulario" method="POST" action="/">
     <div class="campo">
         <label for="email"> Email </label>
@@ -12,7 +16,7 @@
         />
     </div>
     <div class="campo">
-        <label for="password"> Email </label>
+        <label for="password"> Passsword </label>
         <input 
             type="password"
             id="password"

@@ -51,11 +51,16 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El Password debe Contener al menos 6 Caracteres'; 
         }
 
-        // if(!$this->telefono) {
-        //     self::$alertas['error'][] = 'El Teléfono es Obligatorio'; 
-        // }
+        return self::$alertas; 
+    }
 
-        
+    public function validarLogin() {
+        if(!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio'; 
+        }
+        if(!$this->password) {
+            self::$alertas['error'][] = 'El Password es Obligatorio'; 
+        }
 
         return self::$alertas; 
     }
@@ -79,6 +84,17 @@ class Usuario extends ActiveRecord {
 
     public function crearToken() {
         $this->token = uniqid(); 
+    }
+
+    public function comprobarPasswordAndVerificado($password) {
+        
+        $resultado = password_verify($password, $this->password); // toma el password del usuario y luego el de la base de datos 
+
+        if(!$resultado || !$this->confirmado) {
+            self::$alertas['error'][] = 'Password Incorrecto o tu Cuenta No ha sido Confirmada'; 
+        } else {
+            return true; 
+        }
     }
 
 }
